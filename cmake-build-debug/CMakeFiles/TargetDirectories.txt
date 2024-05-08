@@ -1,0 +1,3 @@
+C:/Users/lip_k/Desktop/projaka/cmake-build-debug/CMakeFiles/projaka.dir
+C:/Users/lip_k/Desktop/projaka/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/lip_k/Desktop/projaka/cmake-build-debug/CMakeFiles/rebuild_cache.dir

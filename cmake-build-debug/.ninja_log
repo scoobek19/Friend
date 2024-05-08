@@ -1,0 +1,14 @@
+# ninja log v5
+2	247	7365542439168468	build.ninja	4dadffa043dc159
+4	644	7354372440357433	CMakeFiles/projaka.dir/znajomy/Osoba.cpp.obj	67e53e27c434318f
+5	2150	7354372605243701	CMakeFiles/projaka.dir/main.cpp.obj	54ce3477f87e46ac
+5049	6192	7354376207865635	projaka.exe	4c386df44df8d707
+29	2827	7354372462519657	CMakeFiles/projaka.dir/interfejs/Intr2.cpp.obj	74986735af3dfdc2
+14	193	7353182255486463	CMakeFiles/projaka.dir/interfejs/Dodawanie.cpp.obj	210142a1903135db
+22	906	7354372443283230	CMakeFiles/projaka.dir/znajomy/Ksiazka.cpp.obj	641d9af3c5f38422
+5	5048	7354376196368398	CMakeFiles/projaka.dir/narzedzia/utils.cpp.obj	d7c1128613f8172e
+30	714	7368691977055987	CMakeFiles/projaka.dir/narzedzia/regex.cpp.obj	4d8d13dd8d9f015a
+38	6331	7368692033176529	CMakeFiles/projaka.dir/narzedzia/utils.cpp.obj	d7c1128613f8172e
+11	6896	7368692038803142	CMakeFiles/projaka.dir/main.cpp.obj	54ce3477f87e46ac
+22	6957	7368692039433123	CMakeFiles/projaka.dir/interfejs/Intr2.cpp.obj	74986735af3dfdc2
+6958	10327	7368692073145573	projaka.exe	4135336f4db11945
