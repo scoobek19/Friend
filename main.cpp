@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<conio.h>
+#include<windows.h>
 #include "interfejs/Intr2.h"
 
 using namespace std;
@@ -11,7 +12,7 @@ void Powitanie(){
 }
 
 void Dewiza(){
-    system( "cls" );
+    int n = 1;
     cout<<"FRienda v1.0"<<endl;
     cout<<"Wybierz funkcje: "<<endl;
     cout<<"1. Dodaj znajomego"<<endl;
@@ -20,37 +21,35 @@ void Dewiza(){
     cout<<"4. Wyswietl wszystkich znajomych"<<endl;
     cout<<"5. Odczytanie zbioru z pliku"<<endl;
     cout<<"6. Zapisanie zbioru do pliku"<<endl;
-    cout<<"7. Pomoc"<<endl;
-    cout<<"8. Wyjdz"<<endl;
+    cout<<"7. Dodaj wypożyczenie"<<endl;
+    cout<<"8. Wypisz wypożyczenia"<<endl;
+    cout<<"9. Pomoc"<<endl;
+    cout<<"10. Wyjdz"<<endl;
 }
 int main(){
+    SetConsoleOutputCP(65001);
+
     int i=1;
     Powitanie();
     Ksiazka ks;
-    string fun;
 
-	while(i == 1){
+    while (i == 1) {
         Dewiza();
-		cin>>fun;
-        system("cls");
 
         int a = 0;
-		try{
-            regex pattern_arg(R"((\d)");
-            if(regex_match(fun,pattern_arg)!=0){
-                cout<<"Niepoprawny argument"<<endl;
-            }
-		     a = stoi(fun);
-             if(a>8 || a<1){
-                 cout<<"Niepoprawny numer"<<endl;
-                 continue;
-             }
+        try {
+            cin >> a;
 
-       }catch(exception &err){
-            cout<<"Niepoprawne dane!"<<endl;
+            if (a > 10 || a < 1) {
+                cout << "Niepoprawny numer" << endl;
+                continue;
+            }
+
+        } catch (exception &err) {
+            cout << "Niepoprawne dane!" << endl;
             continue;
-       }catch(int ama){
-            cout<<"Liczba z poza zakresu"<<endl;
+        } catch (int ama) {
+            cout << "Liczba spoza zakresu" << endl;
             continue;
         }
 		switch (a){
@@ -78,12 +77,16 @@ int main(){
             case 6:
                 intr2::zapisz(ks);
                 break;
-
             case 7:
+                intr2::dodaj_wypozyczenie(ks);
+                break;
+            case 8:
+                intr2::wypisz_wypozyczenia(ks);
+                break;
+            case 9:
                 intr2::pomoc();
                 break;
-
-            case 8:
+            case 10:
                 intr2::wyjdz(i);
                 break;
             default:
@@ -93,6 +96,7 @@ int main(){
         if(i==1) {
             cout << "Nacisnij dowolny klawisz by wrocic do menu" << endl;
             getch();
+            system("cls");
         }
 	}
 

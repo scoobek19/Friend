@@ -33,6 +33,10 @@ public:
      static void wyjdz(int &i);
 
      void blad(string komunikat);
+
+     static void dodaj_wypozyczenie(Ksiazka &k);
+
+     static void wypisz_wypozyczenia(Ksiazka &k);
 };
 
 #endif //PROJAKA_DOD_H

@@ -3,6 +3,15 @@
 //
 #include "Intr2.h"
 
+#include <sstream>
+
+static std::string formatuj_czas(const std::chrono::system_clock::time_point &t) {
+    std::time_t time = std::chrono::system_clock::to_time_t(t);
+    char time_buff[30] = {0};
+    strftime(time_buff, 20, "%Y-%m-%d %H:%M:%S", localtime(&time));
+    return std::string(time_buff);
+}
+
 intr2::intr2()= default;
 
     void intr2::zapisz(Ksiazka &k) {
@@ -149,7 +158,7 @@ intr2::intr2()= default;
         if (!k.czy_pusta()) {
             cout << "Wypisuje caly zbior:" << endl;
             cout << endl;
-            for (auto wypo: k.lista()) {
+            for (auto &wypo: k.lista()) {
                 cout << wypo.to_string() << endl;
             }
         } else {
@@ -204,10 +213,10 @@ intr2::intr2()= default;
     }
 
     string intr2::wpisz_argument(string brr) {
-        string argus = "4512";
+        string argus;
         cin>>argus;
         int d=0;
-        regex pattern_nazwisko(R"((\D{1,20}))");
+        regex pattern_nazwisko("\\[a-zA-Z]{1,20}");
         while (regex_match(argus,pattern_nazwisko)==1) {
             if(d>0){
                 cout<<"Niepoprawny format!"<<endl;
@@ -238,4 +247,46 @@ intr2::intr2()= default;
             cout << "overflow!" << endl;
         }
         return argus;
+    }
+
+    void intr2::dodaj_wypozyczenie(Ksiazka &k) {
+        wyszuk_wszyst(k);
+
+        int idWlasciciel, idPozyczajacy;
+        string tytul_ksiazki;
+
+        cout << "Podaj ID właściciela książki: ";
+        cin >> idWlasciciel;
+        cout << "Podaj ID wypożyczającego: ";
+        cin >> idPozyczajacy;
+        cout << "Podaj tytuł książki: ";
+        cin.ignore();
+        getline(cin, tytul_ksiazki);
+
+        try {
+            k.wypozycz(
+                    k.znajdz_osobe(idWlasciciel),
+                    k.znajdz_osobe(idPozyczajacy),
+                    tytul_ksiazki
+            );
+            cout << "Wypożyczono ksiązkę" << endl;
+        } catch (string blad) {
+            cout << "Błąd: " << blad << endl;
+        }
+    }
+
+    void intr2::wypisz_wypozyczenia(Ksiazka &k) {
+        cout << "Wypisuję wypożyczenia: " << endl;
+        int i = 0;
+
+        cout << "Nr Czas wypożyczenia Wypożyczający      Właściciel      Tytuł" << endl;
+        for (auto &wypozyczenie : k.wszystkie_wypozyczenia()) {
+            cout << i << "  "
+                 << formatuj_czas(wypozyczenie.czas_wypozyczenia) << "  "
+                 << wypozyczenie.wypozyczajacy.getImie() << " " << wypozyczenie.wypozyczajacy.getNazw() << "  "
+                 << wypozyczenie.wlasciciel.getImie() << " " << wypozyczenie.wlasciciel.getNazw() << "  "
+                 << wypozyczenie.tytul_ksiazki << endl;
+            i++;
+        }
+        cout << "Wypisano wypożyczenia" << endl;
     }

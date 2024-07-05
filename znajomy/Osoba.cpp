@@ -32,7 +32,7 @@
         ID=id1;
     }
 
-    int Osoba::getID() {
+    int Osoba::getID() const {
         return ID;
     }
 
@@ -43,7 +43,7 @@
         setNum(num1);
 }
 
-string Osoba::to_string() {
+string Osoba::to_string() const {
     string s;
     s.append(std::to_string(ID));
     s.append("    ");

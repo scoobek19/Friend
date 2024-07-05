@@ -18,9 +18,9 @@ public:
     void setNum(string);
     string getNum() const;
     void setID(int id1);
-    int getID();
+    int getID() const;
     Osoba(string, string, string);
-    string to_string();
+    string to_string() const;
 
 };
 #endif //PROJAKA_OSOBA_H
